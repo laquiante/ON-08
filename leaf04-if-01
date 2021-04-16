@@ -57,14 +57,24 @@ iface lo inet loopback
         clagd-priority 1000
         clagd-sys-mac 44:38:39:AB:CD:02
 
-    auto vlan10
-    iface vlan10
+    auto svi10
+    iface svi10
         address-virtual 00:00:00:00:00:01 172.31.10.254/24
         vlan-id 10
         vlan-raw-device bridge
+        
+   auto vxlan10
+   iface vxlan10
+    bridge-access 10
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+    vxlan-local-tunnelip 10.0.0.14
 
-    auto vlan20
-    iface vlan20
+    auto svi20
+    iface svi20
         address-virtual 00:00:00:00:00:01 172.31.20.254/24
         vlan-id 20
         vlan-raw-device bridge
