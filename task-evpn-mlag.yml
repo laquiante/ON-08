@@ -226,160 +226,160 @@
 # Leaf02 routing
 
 - hosts: leaf02
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/leaf02-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf02-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # Leaf03 routing
 
 - hosts: leaf03
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/leaf03-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf03-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # Leaf04 routing
 
 - hosts: leaf04
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/leaf04-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf04-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # border01 routing
 
 - hosts: border01
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/border01-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/border01-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # border02 routing
 
 - hosts: border02
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/border02-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/border02-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # spine01 routing
 
 - hosts: spine01
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/spine01-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/spine01-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
 
 # spine02 routing
 
 - hosts: spine02
- name: Routing
- become: yes
- gather_facts: no
- tasks:
-   - name: simple EVPN
-     copy:
-       src: /home/cumulus/ON-08/spine02-frr-01
-       dest: /etc/frr/frr.conf
-     notify:
-       - frr_reload
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/spine02-frr-01
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
 
- handlers:
-   - name: frr_reload
-     service:
-       name=frr
-       state=reloaded
-     listen: "frr_reload"
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
 
 # #################################################################
