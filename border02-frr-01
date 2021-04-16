@@ -7,7 +7,7 @@ service integrated-vtysh-config
 router bgp 42000016
  bgp router-id 10.0.0.16
  neighbor swp51 interface remote-as external
- neighbor spw52 interface remote-as external
+ neighbor swp52 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected
