@@ -7,11 +7,11 @@ service integrated-vtysh-config
 router bgp 42000101
  bgp router-id 10.0.0.101
  neighbor swp1 interface remote-as external
- neighbor spw2 interface remote-as external
+ neighbor swp2 interface remote-as external
  neighbor swp3 interface remote-as external
- neighbor spw4 interface remote-as external
+ neighbor swp4 interface remote-as external
  neighbor swp5 interface remote-as external
- neighbor spw6 interface remote-as external
+ neighbor swp6 interface remote-as external
  !
  address-family ipv4 unicast
   redistribute connected
