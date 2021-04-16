@@ -34,12 +34,21 @@ iface peerlink.4094
     clagd-priority 2000
     clagd-sys-mac 44:38:39:AB:CD:01
 
-auto vlan10
-iface vlan10
+auto svi10
+iface svi10
     address-virtual 00:00:00:00:00:01 172.31.10.254/24
     vlan-id 10
     vlan-raw-device bridge
-
+    
+auto vxlan10
+iface vxlan10
+    bridge-access 10
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+    vxlan-local-tunnelip 10.0.0.12
 
 auto mgmt
 iface mgmt
