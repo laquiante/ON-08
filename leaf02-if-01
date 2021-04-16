@@ -32,7 +32,7 @@ iface peerlink.4094
     clagd-backup-ip 192.168.200.6 vrf mgmt
     clagd-peer-ip linklocal
     clagd-priority 2000
-    clagd-sys-mac 44:38:39:00:00:01
+    clagd-sys-mac 44:38:39:AB:CD:01
 
 auto vlan10
 iface vlan10
