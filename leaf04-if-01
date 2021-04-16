@@ -36,8 +36,8 @@ iface lo inet loopback
     auto swp51
     iface swp51
 
-    auto swp51
-    iface swp51
+    auto swp52
+    iface swp52
 
     auto bridge
     iface bridge
