@@ -18,7 +18,7 @@ iface swp51
 
 auto bridge
 iface bridge
-    bridge-ports hpcbond
+    bridge-ports peerlink hpcbond
     bridge-vids 10
     bridge-vlan-aware yes
 
