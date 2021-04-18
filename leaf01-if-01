@@ -21,8 +21,8 @@ iface swp52
 
 auto bridge
 iface bridge
-    bridge-ports peerlink hpcbond vxlan10
-    bridge-vids 10
+    bridge-ports peerlink hpcbond vxlan10 l3_vni
+    bridge-vids 10 1001
     bridge-vlan-aware yes
 
 auto peerlink
@@ -52,6 +52,21 @@ iface vxlan10
     mstpctl-portbpdufilter yes
     vxlan-id 10
     vxlan-local-tunnelip 10.0.0.11
+    
+auto l3_vni
+iface l3_vni
+    bridge-access 1001
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10010
+
+auto l3_svi
+iface l3_svi
+    hwaddress 44:38:39:01:01:01
+    vlan-id 1001
+    vlan-raw-device bridge
 
 auto mgmt
 iface mgmt
