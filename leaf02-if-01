@@ -67,8 +67,6 @@ iface l3_svi
     hwaddress 44:38:39:01:01:01
     vlan-id 1001
     vlan-raw-device bridge
-    vrf LinuxAdmin
-
 
 auto mgmt
 iface mgmt
