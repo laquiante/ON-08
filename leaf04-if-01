@@ -59,6 +59,7 @@ iface lo inet loopback
 
     auto svi10
     iface svi10
+        address 172.31.10.251/24
         address-virtual 00:00:00:00:00:01 172.31.10.254/24
         vlan-id 10
         vlan-raw-device bridge
@@ -75,6 +76,7 @@ iface lo inet loopback
 
     auto svi20
     iface svi20
+        address 172.31.20.251/24
         address-virtual 00:00:00:00:00:01 172.31.20.254/24
         vlan-id 20
         vlan-raw-device bridge
