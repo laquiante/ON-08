@@ -41,7 +41,7 @@ iface lo inet loopback
 
     auto bridge
     iface bridge
-        bridge-ports peerlink bond1 bond2 bond3 vxlan10
+        bridge-ports peerlink bond1 bond2 bond3 vxlan10 l3_vni
         bridge-vids 10 20 1001
         bridge-vlan-aware yes
 
@@ -79,8 +79,8 @@ iface lo inet loopback
         vlan-id 20
         vlan-raw-device bridge
         
-auto L3VNI
-iface L3VNI
+auto l3_vni
+iface l3_vni
     bridge-access 1001
     bridge-arp-nd-suppress on
     bridge-learning off
@@ -88,12 +88,11 @@ iface L3VNI
     mstpctl-portbpdufilter yes
     vxlan-id 10010
 
-auto L3_SVI
-iface L3_SVI
-    hwaddress 44:38:39:01:01:01
+auto l3_svi
+iface l3_svi
+    hwaddress 44:38:39:01:01:02
     vlan-id 1001
     vlan-raw-device bridge
-    vrf LinuxAdmin
 
 auto mgmt
 iface mgmt
