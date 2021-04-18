@@ -39,6 +39,7 @@ iface peerlink.4094
 
 auto svi10
 iface svi10
+    address 172.31.10.252/24
     address-virtual 00:00:00:00:00:01 172.31.10.254/24
     vlan-id 10
     vlan-raw-device bridge
