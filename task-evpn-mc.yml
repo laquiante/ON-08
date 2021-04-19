@@ -139,7 +139,7 @@
   tasks:
     - name: /e/n/i
       copy:
-        src: /home/cumulus/ON-08/border01-if-01
+        src: /home/cumulus/ON-08/border01-if-02
         dest: /etc/network/interfaces
     # aktivieren
     - name: activate changes for border01
@@ -156,7 +156,7 @@
   tasks:
     - name: /e/n/i
       copy:
-        src: /home/cumulus/ON-08/border02-if-01
+        src: /home/cumulus/ON-08/border02-if-02
         dest: /etc/network/interfaces
     # aktivieren
     - name: activate changes for border02
