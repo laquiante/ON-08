@@ -1,0 +1,384 @@
+# Server01  IF Datei
+
+- hosts: server01
+  name: Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy:
+        src: /home/cumulus/ON-08/server01-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for Server01
+      shell: /sbin/ifreload -a
+
+# Server11 IF Datei
+
+- hosts: server11
+  name: Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy:
+        src: /home/cumulus/ON-08/server11-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for Server11
+      shell: /sbin/ifreload -a
+
+# Server12 IF Datei
+
+- hosts: server12
+  name: Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy:
+        src: /home/cumulus/ON-08/server12-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for Server12
+      shell: /sbin/ifreload -a
+
+# Server013 IF Datei
+
+- hosts: server13
+  name: Interfaces
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: IPv4
+      copy:
+        src: /home/cumulus/ON-08/server13-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for Server13
+      shell: /sbin/ifreload -a
+
+# #################################################################
+# #################################################################
+# #################################################################
+
+# Leaf01 IF Datei
+
+- hosts: leaf01
+  name: Interfaces for Leaf01
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/leaf01-if-02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: Activate changes for leaf01
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+# Leaf02 IF Dateia
+- hosts: leaf02
+  name: Interfaces for Leaf02
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/leaf02-if-02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for leaf02
+      shell: /sbin/ifreload -a
+
+
+# #################################################################
+
+# Leaf03 IF Datei
+
+- hosts: leaf03
+  name: Interfaces for Leaf03
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/leaf03-if-02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for leaf03
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+# Leaf04 IF Datei
+
+- hosts: leaf04
+  name: Interfaces for Leaf04
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/leaf04-if-02
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for leaf04
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+# Border01 IF Datei
+
+- hosts: border01
+  name: Interfaces for border01
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/border01-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for border01
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+# Border02 IF Datei
+
+- hosts: border02
+  name: Interfaces for border02
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/border02-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for border02
+      shell: /sbin/ifreload -a
+
+
+# #################################################################
+
+# Spine01 IF Datei
+
+- hosts: spine01
+  name: Interfaces for Spine01
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/spine01-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for spine01
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+# Spine02 IF Datei
+
+- hosts: spine02
+  name: Interfaces for Spine02
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: /e/n/i
+      copy:
+        src: /home/cumulus/ON-08/spine02-if-01
+        dest: /etc/network/interfaces
+    # aktivieren
+    - name: activate changes for spine02
+      shell: /sbin/ifreload -a
+
+# #################################################################
+
+ # Leaf01 routing
+
+- hosts: leaf01
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf01-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# Leaf02 routing
+
+- hosts: leaf02
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf02-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# Leaf03 routing
+
+- hosts: leaf03
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf03-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# Leaf04 routing
+
+- hosts: leaf04
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/leaf04-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# border01 routing
+
+- hosts: border01
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/border01-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# border02 routing
+
+- hosts: border02
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/border02-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# spine01 routing
+
+- hosts: spine01
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/spine01-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################
+
+# spine02 routing
+
+- hosts: spine02
+  name: Routing
+  become: yes
+  gather_facts: no
+  tasks:
+    - name: simple EVPN
+      copy:
+        src: /home/cumulus/ON-08/spine02-frr-02
+        dest: /etc/frr/frr.conf
+      notify:
+        - frr_reload
+
+  handlers:
+    - name: frr_reload
+      service:
+        name=frr
+        state=reloaded
+      listen: "frr_reload"
+
+# #################################################################

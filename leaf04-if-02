@@ -1,0 +1,110 @@
+auto lo
+iface lo inet loopback
+    address 10.0.0.14/32
+    clagd-vxlan-anycast-ip 10.0.0.2
+
+    auto swp1
+    iface swp1
+
+    auto swp2
+    iface swp2
+
+    auto swp3
+    iface swp3
+
+    auto bond1
+    iface bond1
+        bridge-access 10
+        bond-slaves swp1
+        clag-id 1
+        bond-lacp-bypass-allow yes
+
+    auto bond2
+    iface bond2
+        bridge-access 10
+        bond-slaves swp2
+        clag-id 2
+        bond-lacp-bypass-allow yes
+
+    auto bond3
+    iface bond3
+        bridge-access 20
+        bond-slaves swp3
+        clag-id 3
+        bond-lacp-bypass-allow yes
+
+    auto swp51
+    iface swp51
+
+    auto swp52
+    iface swp52
+
+    auto bridge
+    iface bridge
+        bridge-ports peerlink bond1 bond2 bond3 vxlan10 l3_vni
+        bridge-vids 10 20 1001
+        bridge-vlan-aware yes
+
+    auto peerlink
+    iface peerlink
+        bond-slaves swp49 swp50
+
+    auto peerlink.4094
+    iface peerlink.4094
+        clagd-args --initDelay 20
+        clagd-backup-ip 192.168.200.8 vrf mgmt
+        clagd-peer-ip linklocal
+        clagd-priority 1000
+        clagd-sys-mac 44:38:39:AB:CD:02
+
+    auto svi10
+    iface svi10
+        address 172.31.10.251/24
+        address-virtual 00:00:00:00:00:01 172.31.10.254/24
+        vlan-id 10
+        vlan-raw-device bridge
+        
+   auto vxlan10
+   iface vxlan10
+    bridge-access 10
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10
+    vxlan-local-tunnelip 10.0.0.14
+    vxlan-mcastgrp 239.0.0.10
+
+
+
+    auto svi20
+    iface svi20
+        address 172.31.20.251/24
+        address-virtual 00:00:00:00:00:01 172.31.20.254/24
+        vlan-id 20
+        vlan-raw-device bridge
+        
+auto l3_vni
+iface l3_vni
+    bridge-access 1001
+    bridge-arp-nd-suppress on
+    bridge-learning off
+    mstpctl-bpduguard yes
+    mstpctl-portbpdufilter yes
+    vxlan-id 10010
+
+auto l3_svi
+iface l3_svi
+    hwaddress 44:38:39:01:01:02
+    vlan-id 1001
+    vlan-raw-device bridge
+
+auto mgmt
+iface mgmt
+    vrf-table auto
+    address 127.0.0.1/8
+
+auto eth0
+iface eth0 inet dhcp
+    vrf mgmt
+    post-up sysctl -w net.ipv6.conf.eth0.accept_ra=2
